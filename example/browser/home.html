@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Example</title>
+</head>
+
+<body style="height: 100%; background-color: white;">
+  <div id="root">
+    <h2>Window # </h2>
+    <div id="a"></div>
+    <div id="b"></div>
+    <div id="c"></div>
+    <button id="btnA">Add 1</button>
+    <button id="btnB">Add 2</button>
+    <button id="btnC">Add 3</button>
+  </div>
+</body>
+<script>
+  const { ipcRenderer } = require('electron')
+  const { subscribe, state } = require('../../src')
+
+  document.getElementById('btnA').onclick = () => ipcRenderer.send('ADD_1')
+  document.getElementById('btnB').onclick = () => ipcRenderer.send('ADD_2')
+  document.getElementById('btnC').onclick = () => ipcRenderer.send('ADD_3')
+
+  const keys = ['a', 'b', 'c']
+  const render = () =>
+    keys.forEach(item => document.getElementById(item).innerText = `${item}: ${state[item]}`)
+  render()
+  subscribe(render)
+</script>
+
+</html>
