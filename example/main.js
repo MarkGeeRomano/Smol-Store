@@ -16,7 +16,7 @@ app.on('ready', () => {
     x: size.width / 2 - 400,
     y: size.height / 2 - 300
   })
-  
+
   win.loadURL(`file://${path.resolve(__dirname, 'browser', 'home')}.html`)
   win.once('ready-to-show', win.show)
 

@@ -87,8 +87,14 @@ Sets the initial app state and creates the dispatch function you'll use to updat
 A [`getter`][getter] function that returns the `state`. Stored in the main process' `global` variable.
 
 ### `dispatch(load)`
-Dispatches an object to all reducers to modify the state accordinly. Will emit a `'REFRESH'` message to all subscribed renderer processes after updating state. _Must be called in main process_ 
+Dispatches an object to all reducers to modify the state accordinly. Will emit a `'REFRESH'` message to all subscribed renderer processes after updating state. _Must be called in main process_.
 
-- `load` an object with atleast one property called `type`. Other properties that hold arbitrary values can be added
+- `load` - an object with atleast one property called `type`. Other properties that hold arbitrary values can be added
+
+### `subscribe(callback)`
+Emits a `'SUBSCRIBE'` message from the given renderer process to the main process to ensure it emits a `'REFRESH'` message to it when state has changed. Creates a listener for the message, and upon the deletion of the given render process, emits an `'UNSUBSCRIBE'` message to the main process. _Must be called in renderer process_.
+
+- `callback` - This callback will fire anytime the `'REFRESH'` event is heard. Most often this will use the updated state to render UI changes.
 
 [getter]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
+[araBlocks]: https://github.com/AraBlocks/
