@@ -1,3 +1,4 @@
+// * unit tests
 
 //initialize
   //state param
@@ -40,3 +41,20 @@
   //check for listener
   //check for onunload
 
+// * integration tests
+
+//dispatch/state/reducers
+  //dispatching event should change single property of state
+  //dispatching event should change multiple properties of state
+  //dispatching event should change no property of state
+
+//subscribe
+  //check if id added to subscribers
+  //check if value to key is given window
+  //check if callback called when state changes
+  //check if id removed when browserwindow closed
+
+const Application = require('spectron').Application
+const assert = require('assert')
+const electronPath = require('electron') // Require Electron from the binaries included in node_modules.
+const path = require('path')

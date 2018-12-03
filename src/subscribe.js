@@ -2,9 +2,9 @@ const { ipcRenderer, remote } = require('electron')
 
 module.exports = (callback) => {
   if (!global.document) {
-    throw new Error('Must pass a function into subscribe')
-  } else if (!callback || !(callback instanceof Function)) {
     throw new Error('Subscribe can only be called in a renderer process')
+  } else if (!callback || !(callback instanceof Function)) {
+    throw new Error('Must pass a function into subscribe')
   }
 
   let smolStore
